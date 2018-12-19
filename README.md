@@ -55,3 +55,6 @@ To run the app in release build:
 react-native run-android variant=release
 ```
 
+To test POST request:
+https://webhook.site/#/2588c44e-9951-4b06-91cb-1c9f6ba9a6c4
+
