@@ -25,7 +25,6 @@ export function getProducts (){
 			error => console.log('An error occurred' , error)
 			)
 			.then((responseJson) => 
-				//console.log(JSON.stringify(responseJson)),
 				dispatch(fetchProducts(responseJson))
 			)
 		}

@@ -1,7 +1,6 @@
 import React from 'react';
-import { FlatList, StyleSheet, Button, View, Text, ActivityIndicator, Image, TouchableOpacity, WebView } from 'react-native';
-import { createAppContainer, createStackNavigator, } from 'react-navigation'; // Version can be specified in package.json
-import Dimensions from 'Dimensions';
+import { FlatList, StyleSheet, View, Text, Image, TouchableOpacity, WebView } from 'react-native';
+
 import { connect } from 'react-redux';
 import { addToCart } from '../actions/actions';
 
@@ -20,30 +19,12 @@ class DetailsScreen extends React.Component {
 
     this.props.addToCart(item);
   }
-  // render() {
-  //   return (
-  //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-  //       <Text>Details Screen</Text>
-  //       <Button
-  //         title="Go to Confirmation "
-  //         onPress={() => this.props.navigation.push('Confirmation')}
-  //       />
-  //       <Button
-  //         title="Go to Home"
-  //         onPress={() => this.props.navigation.navigate('Home')}
-  //       />
-  //       <Button
-  //         title="Go back"
-  //         onPress={() => this.props.navigation.goBack()}
-  //       />
-  //     </View>
-  //   );
-  // }
+  
   render(){
 
     const { navigation } = this.props;
     const item = navigation.getParam('item', 'Not found');
-    console.log(item.images[0].src);
+
     return(
       <View style={styles.container}>
         <View style={styles.image}>
@@ -95,17 +76,10 @@ const styles = StyleSheet.create({
   title:{
     fontWeight: 'bold',
     color: '#777',
-    //flexWrap: 'wrap',
-    //flex: 1,
     textAlign: 'center',
     paddingLeft: 10,
     paddingTop: 5,
     fontSize: 16,
-  },
-  desc:{
-    flexWrap: 'wrap',
-    flex: 1,
-    fontSize: 12,
   },
   addBtn: {
         borderColor: 'black',
@@ -124,21 +98,14 @@ const styles = StyleSheet.create({
 
   },
   priceText: {
-    //paddingLeft: 10,
-    //flex:1,
     marginTop: 5,
     fontSize: 14,
     fontWeight: 'bold',
     color: '#777',
   },
   stockView: {
-    //paddingLeft: 10,
-    //marginLeft: 5,
-   //flex:1,
     marginTop: 5,
     fontSize: 14,
-
-    
   },
   green:{
     color: '#00ff00'

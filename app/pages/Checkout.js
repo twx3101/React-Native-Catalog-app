@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, FlatList, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { addOrder, emptyCart} from '../actions/actions'
 import fetch from 'cross-fetch';
@@ -22,6 +22,8 @@ class CheckoutPage extends React.Component{
 					email: ''
 					}
 				}
+
+  /* send POST request with order details*/
 	postRequest(cartItems, customer){
 		fetch('https://webhook.site/9c352c2c-fe98-4ce5-8e99-d854cd159795',{
 			method: 'POST',
@@ -42,6 +44,8 @@ class CheckoutPage extends React.Component{
                 placeholder= {options.label} value={this.state[options.name]} keyboardType= {options.keyboard || 'default'}/>
       );
   }
+
+    /* pressing the confirmation button */
     onPressButton = () => {
         const {name, phone, email} = this.state;
         const { cartItems, navigation, addOrder, emptyCart } = this.props;
@@ -57,6 +61,7 @@ class CheckoutPage extends React.Component{
         this.setState({email: ''});
         navigation.navigate('Confirmation');
     }
+
 	render(){
     return(
     	<ScrollView>
@@ -143,13 +148,11 @@ const styles = StyleSheet.create({
     textField: {
         height: 40,
         margin: 4,
-        //flex:1
     },
     btn: {
         backgroundColor: '#34495e',
         borderRadius: 3,
         padding: 10,
-        //flex: 1,
         height: 40
     },
     btnText: {
@@ -159,6 +162,7 @@ const styles = StyleSheet.create({
     }
 });
 
+/* map redux store to props */
 const mapStateToProps = (state) => ({
 	cartItems: state.cartActions.cart,
 	cartTotal: state.cartActions.total

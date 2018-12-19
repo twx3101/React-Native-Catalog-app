@@ -1,7 +1,5 @@
 import React from 'react';
 import { FlatList, StyleSheet, Button, View, Text, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
-import { createAppContainer, createStackNavigator, } from 'react-navigation'; // Version can be specified in package.json
-import Dimensions from 'Dimensions'
 
 import { connect } from 'react-redux';
 import { fetchProducts, getProducts, addToCart} from '../actions/actions'
@@ -17,9 +15,8 @@ class HomeScreen extends React.Component {
       headerRight: <Cart navigation={navigation}/>
     }
   }
+  /* adds item to cart */
   addToCart(item){
-    console.log(item.price)
-
     this.props.addToCart(item);
   }
 
@@ -30,9 +27,6 @@ class HomeScreen extends React.Component {
   }
 
   loaded(){
-    // console.log('haha')
-    // console.log(this.props)
-
     if (this.props.products != undefined){
       this.state.isLoading = false
     }
@@ -44,40 +38,17 @@ class HomeScreen extends React.Component {
   }
   componentDidMount(){
     this.props.getProducts();
-    //this.state = { isLoading:false}
-    //console.log(this.props.products)
-    // return fetch('https://82v9umvzoj.execute-api.ap-southeast-1.amazonaws.com/dev/products')
-    //   .then((response) => response.json())
-    //   .then((responseJson) => {
-    //     //console.log(JSON.stringify(responseJson[0].id));
-    //     this.setState({
-    //       isLoading: false,
-    //       dataSource: responseJson
-    //     }, function(){
-
-    //     });
-    //   })
-    //   .catch((error) =>{
-    //     console.error(error);
-    //   });
   }
   render() {
     this.loaded()
-    //console.log(this.props.notifications);
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 20}}>
-        <Button
-            title="Refresh"
-            onPress={() => this.forceUpdate()}
-          />
           <ActivityIndicator/>
         </View>
       )
     }
     else{
-      //console.log("RE-RENDERED");
-      //this.print();
       return (
         <View style={styles.container}>
           <FlatList
@@ -105,7 +76,6 @@ class HomeScreen extends React.Component {
   }
 }
 
-var {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
      flex: 1,
@@ -127,65 +97,55 @@ const styles = StyleSheet.create({
       shadowRadius: 1
     },
     imageView: {
-    //flex:1,
       width: '40%',
       height: 100 ,
       resizeMode: 'cover',
       margin: 7,
       borderRadius : 7
-   
-  },
-  addBtn: {
-        borderRadius: 30,
-        margin: 10,
-        backgroundColor: '#1abc8c'
-    },
- 
-  textView: {
-    paddingLeft: 10,
-    paddingTop: 5,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#777',
-    flexWrap: 'wrap',
-    flex: 1
- 
-  },
-  priceView: {
-    paddingLeft: 10,
-    marginTop: 5,
-    fontSize: 14,
-    color: '#777',
-    
-
-
-  },
-  stockView: {
-    paddingLeft: 10,
-    marginLeft: 5,
-    marginTop: 5,
-    fontSize: 14,
-    
-  },
-  green:{
-    color: '#00ff00'
-  },
-  red:{
-    color : '#ff0000'
-  },
-  rowText: {
-    flex: 1,
-    flexDirection: 'column'
-  },
+      },
+    addBtn:{
+      borderRadius: 30,
+      margin: 10,
+      backgroundColor: '#1abc8c'
+      },
+     
+    textView: {
+      paddingLeft: 10,
+      paddingTop: 5,
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: '#777',
+      flexWrap: 'wrap',
+      flex: 1
+      },
+    priceView: {
+      paddingLeft: 10,
+      marginTop: 5,
+      fontSize: 14,
+      color: '#777',
+      },
+    stockView: {
+      paddingLeft: 10,
+      marginLeft: 5,
+      marginTop: 5,
+      fontSize: 14,
+      },
+    green:{
+      color: '#00ff00'
+      },
+    red:{
+      color : '#ff0000'
+      },
+    rowText: {
+      flex: 1,
+      flexDirection: 'column'
+      },
 
 
 })
 
-// export default HomeScreen;
-
+/* connects props to redux store */
 const mapStateToProps = (state) => {
-  // console.log(state)
-  // console.log(state.productActions.products)
   return { 
     products: state.productActions.products
      }

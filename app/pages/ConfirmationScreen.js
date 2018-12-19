@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, FlatList, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 
 export default class Confirmation extends React.Component{
