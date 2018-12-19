@@ -3,7 +3,7 @@ An e-commerce app built with React-Native and Redux for state management
 
 ## Installation for Release Build
 
-###Requirements
+### Requirements
 
 * Android Device running >= Android 4.1 (API 16) or
 * Android Emulator e.g. Android Studio
@@ -22,15 +22,15 @@ adb install app-release.apk
 ```
 6. Wait until installation is complete.
 
-## Instalation for development Build
+## Installation for development Build
 
-###Requirements
+### Requirements
 * NodeJS, Python 2, JDK 8
 * React-Native
 
 More information can be found at https://facebook.github.io/react-native/docs/getting-started
 
-###Installation
+### Installation
 
 Open terminal and go to the project folder and type
 ```bash
